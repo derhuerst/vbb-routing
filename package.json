@@ -22,13 +22,18 @@
 		"node": ">=6"
 	},
 	"dependencies": {
+		"sqlite3": "^3.1.13"
 	},
 	"devDependencies": {
 		"tap-min": "^1.2.2",
-		"tape": "^4.8.0"
+		"tape": "^4.8.0",
+		"async.queue": "^0.5.2",
+		"gtfs-utils": "^0.2.3",
+		"sample-gtfs-feed": "^0.2.3"
 	},
 	"scripts": {
+		"build": "env NODE_ENV=dev node build/index.js",
 		"test": "env NODE_ENV=dev node test.js | tap-min",
-		"prepublishOnly": "npm test"
+		"prepublishOnly": "npm run build && npm test"
 	}
 }
