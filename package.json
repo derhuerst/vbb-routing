@@ -23,7 +23,7 @@
 		"node": ">=6"
 	},
 	"dependencies": {
-		"run-queue": "^1.0.3",
+		"queue": "^4.4.2",
 		"sqlite3": "^3.1.13"
 	},
 	"devDependencies": {
