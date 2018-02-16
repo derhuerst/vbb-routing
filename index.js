@@ -46,7 +46,8 @@ const find = (db, where, when) => {
 
 	const resultsPerStep = 3
 	const latestArrival = start.when + 3600
-	const findSegments = createFindSegments(db, resultsPerStep, latestArrival)
+	const transferTime = 30
+	const findSegments = createFindSegments(db, resultsPerStep, latestArrival, transferTime)
 
 	findSegments(start, (err, segments1) => {
 		if (err) return console.error(err) // todo
