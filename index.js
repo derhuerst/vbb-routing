@@ -61,7 +61,6 @@ const find = (db, origin, destination, start, cfg = {}) => {
 		when: start,
 		route: null,
 		duration: 0,
-		totalDuration: 0,
 		transfers: 0,
 		blacklist: [origin]
 	}))

@@ -36,7 +36,6 @@ const first = {
 	duration: 0, // we just started, so edge duration
 
 	// current state
-	totalDuration: 0,
 	transfers: 0,
 	blacklist: ['center'], // node we don't want to visit again
 	previousSegment: null
@@ -54,7 +53,6 @@ const second = {
 	duration: 360,
 
 	// current state
-	totalDuration: 360 + first.totalDuration,
 	transfers: first.transfers + 0,
 	blacklist: first.blacklist.concat('lake'),
 	previousSegment: first
