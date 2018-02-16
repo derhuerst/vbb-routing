@@ -5,6 +5,7 @@ const {EventEmitter} = require('events')
 
 const createFindSegments = require('./lib/find-segments')
 const estimatePriority = require('./lib/estimate-priority')
+const addTaskWithPriority = require('./lib/add-task-with-priority')
 
 const isObj = o => o !== null && 'object' === typeof o && !Array.isArray(o)
 
@@ -34,20 +35,6 @@ const find = (db, origin, destination, start, cfg = {}) => {
 	})
 	queue.on('end', (err) => out.emit('end', err))
 
-	// todo: move into lib
-	const addTask = (priority, task) => {
-		if ('number' !== typeof priority) throw new Error('missing priority.')
-		if ('function' !== typeof task) throw new Error('missing task.')
-
-		let i
-		for (i = 0; i < queue.jobs.length; i++) {
-			if (priority < queue.jobs[i].priority) break
-		}
-
-		task.priority = priority
-		queue.splice(i, 0, task)
-	}
-
 	const findSegments = createFindSegments(db, cfg)
 	const createTask = (segment) => (cb) => {
 		findSegments(segment, (err, newSegments) => {
@@ -58,14 +45,15 @@ const find = (db, origin, destination, start, cfg = {}) => {
 					out.emit('result', newSegment)
 				} else {
 					const priority = estimatePriority(newSegment, cfg)
-					addTask(priority, createTask(segment))
+					const task = createTask(newSegment)
+					addTaskWithPriority(queue, priority, task)
 				}
 			}
 			cb()
 		})
 	}
 
-	addTask(0, createTask({
+	addTaskWithPriority(queue, 0, createTask({
 		previousSegment: null,
 		where: origin,
 		when: start,
