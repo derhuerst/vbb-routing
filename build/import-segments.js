@@ -27,8 +27,8 @@ const importSegments = (db, segments) => {
 		}
 
 		db.run(`CREATE TABLE edges (
-			source text,
-			target text,
+			a text,
+			b text,
 			timestamp integer,
 			duration smallint,
 			route_id text
