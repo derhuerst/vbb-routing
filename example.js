@@ -1,14 +1,11 @@
 'use strict'
 
-const path = require('path')
-const {Database} = require('sqlite3')
 const {inspect} = require('util')
 
-const find = require('.')
+const computeJourneys = require('.')
 
-const db = new Database(path.join(__dirname, 'index.sqlite'))
+const search = computeJourneys('center', 'airport', 1554307600)
 
-const search = find(db, 'center', 'airport', 1554307600)
 search.once('end', (err) => {
 	if (!err) return null
 	console.error(err)
