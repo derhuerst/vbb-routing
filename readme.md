@@ -23,6 +23,43 @@ todo
 ```
 
 
+## Segment model
+
+Starting to walk the graph, our first segment looks like this:
+
+```js
+const first = {
+	// edge info
+	where: 'center', // arrival node
+	when: 1554307600, // start time
+	route: null, // we just started, so no route ID
+	duration: 0, // we just started, so edge duration
+
+	// current state
+	totalDuration: 0,
+	blacklist: ['center'], // node we don't want to visit again
+	previousSegment: null
+}
+```
+
+A follow-up segment (the result of a single edge in the graph) may then look like this:
+
+```js
+const second = {
+	// edge info
+	where: 'lake',
+	when: 1554308040 + 360, // arrival time
+	route: 'B',
+	duration: 360,
+
+	// current state
+	totalDuration: 360 + first.totalDuration,
+	blacklist: first.blacklist.concat('lake'),
+	previousSegment: first
+}
+```
+
+
 ## Contributing
 
 If you have a question or have difficulties using `vbb-routing`, please double-check your code and setup first. If you think you have found a bug or want to propose a feature, refer to [the issues page](https://github.com/derhuerst/vbb-routing/issues).
