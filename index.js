@@ -6,6 +6,7 @@ const {EventEmitter} = require('events')
 const createFindSegments = require('./lib/find-segments')
 const estimatePriority = require('./lib/estimate-priority')
 const addTaskWithPriority = require('./lib/add-task-with-priority')
+const segmentToJourney = require('./lib/segment-to-journey')
 
 const isObj = o => o !== null && 'object' === typeof o && !Array.isArray(o)
 
@@ -42,7 +43,8 @@ const find = (db, origin, destination, start, cfg = {}) => {
 
 			for (let newSegment of newSegments) {
 				if (newSegment.where === destination) {
-					out.emit('result', newSegment)
+					const journey = segmentToJourney(newSegment)
+					out.emit('result', journey)
 				} else {
 					const priority = estimatePriority(newSegment, cfg)
 					const task = createTask(newSegment)

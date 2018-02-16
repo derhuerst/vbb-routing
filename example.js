@@ -2,6 +2,7 @@
 
 const path = require('path')
 const {Database} = require('sqlite3')
+const {inspect} = require('util')
 
 const find = require('.')
 
@@ -13,4 +14,6 @@ search.once('end', (err) => {
 	console.error(err)
 	process.exitCode = 1
 })
-search.once('result', console.log)
+search.once('result', (journey) => {
+	console.log(inspect(journey, {depth: Infinity}))
+})

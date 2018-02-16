@@ -58,48 +58,50 @@ const b2 = {
 }
 
 test('lib/segment-to-journey', (t) => {
-	t.plan(1)
 	// todo: check if throws
+	t.plan(1)
+
+	const formatDate = t => new Date(t * 1000) + ''
 	t.deepEqual(segmentToJourney(b2), {
 		legs: [{
 			origin: 'one',
-			departure: 10000,
+			departure: formatDate(10000),
 			destination: 'three',
-			arrival: 10000 + 100 + 150,
+			arrival: formatDate(10000 + 100 + 150),
 			route: 'a',
 			passed: [{
 				station: 'one',
-				departure: 10000
+				departure: formatDate(10000)
 			}, {
 				station: 'two',
-				arrival: 10000 + 100,
-				departure: 10000 + 100
+				arrival: formatDate(10000 + 100),
+				departure: formatDate(10000 + 100)
 			}, {
 				station: 'three',
-				arrival: 10000 + 100 + 150
+				arrival: formatDate(10000 + 100 + 150)
 			}]
 		}, {
 			origin: 'three',
-			departure: 10310, // 1st leg + transfer + waiting
+			departure: formatDate(10310), // 1st leg + transfer + waiting
 			destination: 'five',
-			arrival: 10310 + 200 + 250,
+			arrival: formatDate(10310 + 200 + 250),
 			route: 'b',
 			passed: [{
 				station: 'three',
-				departure: 10310
+				departure: formatDate(10310)
 			}, {
 				station: 'four',
-				arrival: 10310 + 200,
-				departure: 10310 + 200
+				arrival: formatDate(10310 + 200),
+				departure: formatDate(10310 + 200)
 			}, {
 				station: 'five',
-				arrival: 10310 + 200 + 250
+				arrival: formatDate(10310 + 200 + 250)
 			}]
 		}],
 		origin: 'one',
-		departure: 10000,
+		departure: formatDate(10000),
 		destination: 'five',
-		arrival: 10310 + 200 + 250
+		arrival: formatDate(10310 + 200 + 250)
 	})
 })
 
