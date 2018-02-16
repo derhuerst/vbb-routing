@@ -6,7 +6,7 @@ const {Database} = require('sqlite3')
 const computeSegments = require('./compute-segments')
 const importSegments = require('./import-segments')
 
-const db = new Database(path.join(__dirname, '..', 'index.sqlite'))
+const db = new Database(path.join(__dirname, '..', 'data.sqlite'))
 
 computeSegments()
 .then(segments => importSegments(db, segments))

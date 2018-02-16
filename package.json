@@ -30,12 +30,15 @@
 		"async.queue": "^0.5.2",
 		"gtfs-utils": "^0.2.3",
 		"sample-gtfs-feed": "^0.2.3",
-		"tap-min": "^1.2.2",
+		"tap-difflet": "^0.7.0",
 		"tape": "^4.8.0"
 	},
 	"scripts": {
-		"build": "env NODE_ENV=dev node build/index.js",
-		"test": "env NODE_ENV=dev node test/index.js | tap-min",
+		"download": "cd build; ./download.sh",
+		"convert": "rm data.sqlite; env NODE_ENV=dev node build/index.js",
+		"cleanup": "build/*.txt",
+		"build": "npm run download && npm run convert && npm run cleanup",
+		"test": "env NODE_ENV=dev node test/index.js | tap-difflet -p",
 		"prepublishOnly": "npm run build && npm test"
 	}
 }

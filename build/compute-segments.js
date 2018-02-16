@@ -7,7 +7,9 @@ const readCsv = require('gtfs-utils/read-csv')
 const timezone = 'Europe/Berlin'
 
 // todo: real data
-const srcDir = path.dirname(require.resolve('sample-gtfs-feed/gtfs/routes.txt'))
+const srcDir = process.env.SAMPLE_FEED === 'true'
+	? path.dirname(require.resolve('sample-gtfs-feed/gtfs/routes.txt'))
+	: __dirname
 
 const sortStopovers = (s1, s2) => {
 	return parseInt(s1.stop_sequence) - parseInt(s2.stop_sequence)
