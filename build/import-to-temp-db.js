@@ -29,6 +29,10 @@ const importToTempDb = (tempDb) => {
 
 	let row = 0
 	const importWrite = (stopover, _, cb) => {
+		// todo: remove
+		row++
+		if (row % 1000 === 0) console.error(row)
+
 		tempDb.run(
 			'INSERT INTO stopovers VALUES (?, ?, ?, ?, ?, ?);',
 			// see SCHEMA above
