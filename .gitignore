@@ -11,3 +11,4 @@ shrinkwrap.yaml
 
 data.sqlite
 build/*.txt
+build/temp.sqlite
