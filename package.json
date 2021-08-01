@@ -29,7 +29,7 @@
 	"devDependencies": {
 		"async.queue": "^0.5.2",
 		"concurrent-writable": "^1.0.4",
-		"gtfs-utils": "^0.2.4",
+		"gtfs-utils": "^0.6.1",
 		"pump": "^3.0.0",
 		"sample-gtfs-feed": "^0.2.3",
 		"tap-difflet": "^0.7.0",
