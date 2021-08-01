@@ -31,7 +31,7 @@
 		"concurrent-writable": "^1.0.4",
 		"gtfs-utils": "^0.2.4",
 		"pump": "^3.0.0",
-		"sample-gtfs-feed": "^0.2.3",
+		"sample-gtfs-feed": "^0.10.3",
 		"tap-difflet": "^0.7.0",
 		"tape": "^4.8.0"
 	},
