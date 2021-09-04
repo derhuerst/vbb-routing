@@ -1,46 +1,50 @@
 {
-	"name": "vbb-routing",
-	"description": "Compute journeys based on the VBB GTFS data.",
-	"version": "0.1.0",
-	"main": "index.js",
-	"files": [
-		"index.js",
-		"lib"
-	],
-	"keywords": [
-		"vbb",
-		"routing",
-		"gtfs",
-		"public transport",
-		"transit"
-	],
-	"author": "Jannis R <mail@jannisr.de>",
-	"homepage": "https://github.com/derhuerst/vbb-routing",
-	"repository": "derhuerst/vbb-routing",
-	"bugs": "https://github.com/derhuerst/vbb-routing/issues",
-	"license": "ISC",
-	"engines": {
-		"node": ">=6"
-	},
-	"dependencies": {
-		"queue": "^4.4.2",
-		"sqlite3": "^3.1.13"
-	},
-	"devDependencies": {
-		"async.queue": "^0.5.2",
-		"concurrent-writable": "^1.0.4",
-		"gtfs-utils": "^0.2.4",
-		"pump": "^3.0.0",
-		"sample-gtfs-feed": "^0.2.3",
-		"tap-difflet": "^0.7.0",
-		"tape": "^4.8.0"
-	},
-	"scripts": {
-		"download": "cd build; ./download.sh",
-		"convert": "rm data.sqlite; env NODE_ENV=dev node build/index.js",
-		"cleanup": "build/*.txt",
-		"build": "npm run download && npm run convert && npm run cleanup",
-		"test": "env NODE_ENV=dev node test/index.js | tap-difflet -p",
-		"prepublishOnly": "npm run build && npm test"
-	}
+  "name": "vbb-routing",
+  "description": "Compute journeys based on the VBB GTFS data.",
+  "version": "0.1.0",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "keywords": [
+    "vbb",
+    "routing",
+    "gtfs",
+    "public transport",
+    "transit"
+  ],
+  "author": "Jannis R <mail@jannisr.de>",
+  "homepage": "https://github.com/derhuerst/vbb-routing",
+  "repository": "derhuerst/vbb-routing",
+  "bugs": "https://github.com/derhuerst/vbb-routing/issues",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "queue": "^4.4.2",
+    "sqlite3": "^4.0.0",
+    "@snyk/protect": "latest"
+  },
+  "devDependencies": {
+    "async.queue": "^0.5.2",
+    "concurrent-writable": "^1.0.4",
+    "gtfs-utils": "^0.2.4",
+    "pump": "^3.0.0",
+    "sample-gtfs-feed": "^0.2.3",
+    "tap-difflet": "^0.7.0",
+    "tape": "^4.8.0"
+  },
+  "scripts": {
+    "download": "cd build; ./download.sh",
+    "convert": "rm data.sqlite; env NODE_ENV=dev node build/index.js",
+    "cleanup": "build/*.txt",
+    "build": "npm run download && npm run convert && npm run cleanup",
+    "test": "env NODE_ENV=dev node test/index.js | tap-difflet -p",
+    "prepublishOnly": "npm run build && npm test",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "snyk": true
 }
