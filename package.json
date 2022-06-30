@@ -24,7 +24,7 @@
 	},
 	"dependencies": {
 		"queue": "^4.4.2",
-		"sqlite3": "^3.1.13"
+		"sqlite3": "^5.0.3"
 	},
 	"devDependencies": {
 		"async.queue": "^0.5.2",
